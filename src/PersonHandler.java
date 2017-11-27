@@ -6,16 +6,9 @@ public class PersonHandler {
     Scanner mainScanner = new Scanner(System.in);
     boolean doStuff = true;
 
-    Hero FirstHero = new Hero("Edmund","Whitesword","Wolf",Sex.MALE);
     List<Hero> heroes = new ArrayList<Hero>();
 
-    public void method() {
-        heroes.add(FirstHero);
-        Hero hero = heroes.get(0);
-        System.out.println(hero);
-    }
-
-    public void Init() {
+    public void Init() throws Exception {
         while (doStuff) {
             System.out.flush();
             System.out.println("Co chcesz zrobic ?");
@@ -25,7 +18,15 @@ public class PersonHandler {
             }
             if ("AddPerson".equals(Input)) {
                 Hero hero = new Hero();
-                hero.setName(hero.ReadName());
+                try {
+                    hero.setName(hero.ReadName());
+                }
+                catch(Exception e){
+System.out.println(e.getMessage());
+                }finally {
+                    hero.setName(ReadName());
+                }
+
                 hero.setLastName(hero.ReadLastName());
                 hero.setAnimal(hero.ReadAnimal());
                 hero.setSex(hero.ReadSex());
@@ -41,5 +42,13 @@ public class PersonHandler {
         for(Hero x : heroes) {
             System.out.println(x);
         }
+    }
+
+    public String ReadName(){
+        Scanner PersonScanner = new Scanner(System.in);
+
+        System.out.println("Podaj imie - substytut");
+        String nameGot=PersonScanner.nextLine();
+        return nameGot;
     }
 }

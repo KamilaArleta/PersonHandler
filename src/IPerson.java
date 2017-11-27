@@ -1,7 +1,7 @@
 
 public interface IPerson {
 
-    String ReadName();
+    String ReadName() throws Exception;
 
     String ReadLastName();
 

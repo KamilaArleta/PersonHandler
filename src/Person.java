@@ -3,9 +3,15 @@ import java.util.Scanner;
 public abstract class Person implements IPerson {
     Scanner PersonScanner = new Scanner(System.in);
 
-    public String ReadName() {
+    public String ReadName() throws Exception {
         System.out.println("Podaj imie");
-        return PersonScanner.nextLine();
+        String nameGot=PersonScanner.nextLine();
+        if("Zenon".equals(nameGot))
+        {
+            nameGot = "";
+            throw new Exception("Zenon is not a good name");
+        }
+        return nameGot;
     }
 
     public String ReadLastName() {
